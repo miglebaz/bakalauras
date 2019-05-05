@@ -44,7 +44,7 @@ class PostItem extends Component {
             <br />
             <p className="text-center">{post.name}</p>
           </div>
-          <div className="col-md-10">
+          <div className="post-info">
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>
@@ -74,7 +74,7 @@ class PostItem extends Component {
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
-                    className="btn btn-danger mr-1"
+                    className="delete btn btn-danger mr-1"
                   >
                     <i className="fas fa-times" />
                   </button>

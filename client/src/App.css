@@ -37,3 +37,58 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+
+.posts-header {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  padding: 20px 0;
+  margin: 10px 0;
+  background-color:rgba(71,91,99, 0.3);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.posts-title {
+  color: white;
+  opacity: 1!important;
+}
+
+.btn-info {
+  background: #353535;
+  border: none;
+}
+
+.btn-info:hover {
+  background: #353535;
+  opacity: 0.8;
+}
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.delete {
+  background-color: white;
+  color: #353535;
+  border: none;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  font-size: 16px;
+}
+
+.delete:hover {
+  background-color: #353535;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
