@@ -9,7 +9,7 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -17,8 +17,8 @@ class PostForm extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+    if (newProps.warnings) {
+      this.setState({ warnings: newProps.warnings });
     }
   }
 
@@ -42,7 +42,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="posts-header">
@@ -55,12 +55,12 @@ class PostForm extends Component {
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { addPost })(PostForm);

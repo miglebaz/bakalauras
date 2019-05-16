@@ -27,7 +27,7 @@ class CreateProfile extends Component {
       linkedin: '',
       youtube: '',
       instagram: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -39,8 +39,8 @@ class CreateProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    if (nextProps.warnings) {
+      this.setState({ warnings: nextProps.warnings });
     }
 
     if (nextProps.profile.profile) {
@@ -120,7 +120,7 @@ class CreateProfile extends Component {
   }
 
   render() {
-    const { errors, displaySocialInputs } = this.state;
+    const { warnings, displaySocialInputs } = this.state;
 
     let socialInputs;
 
@@ -133,7 +133,7 @@ class CreateProfile extends Component {
             icon="fab fa-twitter"
             value={this.state.twitter}
             onChange={this.onChange}
-            error={errors.twitter}
+            error={warnings.twitter}
           />
 
           <InputGroup
@@ -142,7 +142,7 @@ class CreateProfile extends Component {
             icon="fab fa-facebook"
             value={this.state.facebook}
             onChange={this.onChange}
-            error={errors.facebook}
+            error={warnings.facebook}
           />
 
           <InputGroup
@@ -151,7 +151,7 @@ class CreateProfile extends Component {
             icon="fab fa-linkedin"
             value={this.state.linkedin}
             onChange={this.onChange}
-            error={errors.linkedin}
+            error={warnings.linkedin}
           />
 
           <InputGroup
@@ -160,7 +160,7 @@ class CreateProfile extends Component {
             icon="fab fa-youtube"
             value={this.state.youtube}
             onChange={this.onChange}
-            error={errors.youtube}
+            error={warnings.youtube}
           />
 
           <InputGroup
@@ -169,7 +169,7 @@ class CreateProfile extends Component {
             icon="fab fa-instagram"
             value={this.state.instagram}
             onChange={this.onChange}
-            error={errors.instagram}
+            error={warnings.instagram}
           />
         </div>
       );
@@ -204,7 +204,7 @@ class CreateProfile extends Component {
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
-                  error={errors.handle}
+                  error={warnings.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
                 />
                 <SelectListGroup
@@ -213,7 +213,7 @@ class CreateProfile extends Component {
                   value={this.state.status}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={warnings.status}
                   info="Give us an idea of where you are at in your career"
                 />
                 <TextFieldGroup
@@ -221,7 +221,7 @@ class CreateProfile extends Component {
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
-                  error={errors.company}
+                  error={warnings.company}
                   info="Could be your own company or one you work for"
                 />
                 <TextFieldGroup
@@ -229,7 +229,7 @@ class CreateProfile extends Component {
                   name="website"
                   value={this.state.website}
                   onChange={this.onChange}
-                  error={errors.website}
+                  error={warnings.website}
                   info="Could be your own website or a company one"
                 />
                 <TextFieldGroup
@@ -237,7 +237,7 @@ class CreateProfile extends Component {
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
-                  error={errors.location}
+                  error={warnings.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
                 <TextFieldGroup
@@ -245,7 +245,7 @@ class CreateProfile extends Component {
                   name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
-                  error={errors.skills}
+                  error={warnings.skills}
                   info="Please use comma separated values (eg.
                     HTML,CSS,JavaScript,PHP"
                 />
@@ -254,7 +254,7 @@ class CreateProfile extends Component {
                   name="githubusername"
                   value={this.state.githubusername}
                   onChange={this.onChange}
-                  error={errors.githubusername}
+                  error={warnings.githubusername}
                   info="If you want your latest repos and a Github link, include your username"
                 />
                 <TextAreaFieldGroup
@@ -262,7 +262,7 @@ class CreateProfile extends Component {
                   name="bio"
                   value={this.state.bio}
                   onChange={this.onChange}
-                  error={errors.bio}
+                  error={warnings.bio}
                   info="Tell us a little about yourself"
                 />
 
@@ -299,12 +299,12 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(

@@ -1,7 +1,7 @@
 {
-  "name": "devconnector",
+  "name": "itstud",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "Socialinis tinklapis skirtas IT studentams atskleitsi žinias ir gebėjimus",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -10,7 +10,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Brad Traversy",
+  "author": "Miglė Bazevičiūtė",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

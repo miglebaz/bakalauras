@@ -7,7 +7,7 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 
 // Load Input Validation
-const validateRegisterInput = require('../../validation/register');
+const validateNewUserInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 // Load User model
@@ -16,35 +16,35 @@ const User = require('../../models/User');
 // @route   GET api/users/test
 // @desc    Tests users route
 // @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Users Works' }));
+router.get('/test', (request, response) => response.json({ msg: 'Users Works' }));
 
 // @route   POST api/users/register
 // @desc    Register user
 // @access  Public
-router.post('/register', (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+router.post('/register', (request, response) => {
+  const { warnings, isValid } = validateNewUserInput(request.body);
 
   // Check Validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return response.status(400).json(warnings);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ email: request.body.email }).then(user => {
     if (user) {
-      errors.email = 'Email already exists';
-      return res.status(400).json(errors);
+      warnings.email = 'El. paštas jau egzistuoja';
+      return response.status(400).json(warnings);
     } else {
-      const avatar = gravatar.url(req.body.email, {
+      const avatar = gravatar.url(request.body.email, {
         s: '200', // Size
         r: 'pg', // Rating
         d: 'mm' // Default
       });
 
       const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
+        name: request.body.name,
+        email: request.body.email,
         avatar,
-        password: req.body.password
+        password: request.body.password
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => response.json(user))
             .catch(err => console.log(err));
         });
       });
@@ -64,23 +64,23 @@ router.post('/register', (req, res) => {
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
 // @access  Public
-router.post('/login', (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+router.post('/login', (request, response) => {
+  const { warnings, isValid } = validateLoginInput(request.body);
 
   // Check Validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return response.status(400).json(warnings);
   }
 
-  const email = req.body.email;
-  const password = req.body.password;
+  const email = request.body.email;
+  const password = request.body.password;
 
   // Find user by email
   User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
-      errors.email = 'User not found';
-      return res.status(404).json(errors);
+      warnings.email = 'User not found';
+      return response.status(404).json(warnings);
     }
 
     // Check Password
@@ -95,15 +95,15 @@ router.post('/login', (req, res) => {
           keys.secretOrKey,
           { expiresIn: 3600 },
           (err, token) => {
-            res.json({
+            response.json({
               success: true,
               token: 'Bearer ' + token
             });
           }
         );
       } else {
-        errors.password = 'Password incorrect';
-        return res.status(400).json(errors);
+        warnings.password = 'Password incorrect';
+        return response.status(400).json(warnings);
       }
     });
   });
@@ -115,11 +115,11 @@ router.post('/login', (req, res) => {
 router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email
+  (request, response) => {
+    response.json({
+      id: request.user.id,
+      name: request.user.name,
+      email: request.user.email
     });
   }
 );

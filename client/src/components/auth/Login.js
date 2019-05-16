@@ -10,7 +10,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,8 +28,8 @@ class Login extends Component {
       this.props.history.push('/dashboard');
     }
 
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    if (nextProps.warnings) {
+      this.setState({ warnings: nextProps.warnings });
     }
   }
 
@@ -49,7 +49,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="login">
@@ -67,7 +67,7 @@ class Login extends Component {
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  error={errors.email}
+                  error={warnings.email}
                 />
 
                 <TextFieldGroup
@@ -76,7 +76,7 @@ class Login extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors.password}
+                  error={warnings.password}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -91,12 +91,12 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

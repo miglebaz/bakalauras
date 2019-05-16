@@ -17,7 +17,7 @@ class AddEducation extends Component {
       to: '',
       current: false,
       description: '',
-      errors: {},
+      warnings: {},
       disabled: false
     };
 
@@ -27,8 +27,8 @@ class AddEducation extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    if (nextProps.warnings) {
+      this.setState({ warnings: nextProps.warnings });
     }
   }
 
@@ -60,7 +60,7 @@ class AddEducation extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="add-education">
@@ -81,21 +81,21 @@ class AddEducation extends Component {
                   name="school"
                   value={this.state.school}
                   onChange={this.onChange}
-                  error={errors.school}
+                  error={warnings.school}
                 />
                 <TextFieldGroup
                   placeholder="* Degree or Certification"
                   name="degree"
                   value={this.state.degree}
                   onChange={this.onChange}
-                  error={errors.degree}
+                  error={warnings.degree}
                 />
                 <TextFieldGroup
                   placeholder="* Field of Study"
                   name="fieldofstudy"
                   value={this.state.fieldofstudy}
                   onChange={this.onChange}
-                  error={errors.fieldofstudy}
+                  error={warnings.fieldofstudy}
                 />
                 <h6>From Date</h6>
                 <TextFieldGroup
@@ -103,7 +103,7 @@ class AddEducation extends Component {
                   type="date"
                   value={this.state.from}
                   onChange={this.onChange}
-                  error={errors.from}
+                  error={warnings.from}
                 />
                 <h6>To Date</h6>
                 <TextFieldGroup
@@ -111,7 +111,7 @@ class AddEducation extends Component {
                   type="date"
                   value={this.state.to}
                   onChange={this.onChange}
-                  error={errors.to}
+                  error={warnings.to}
                   disabled={this.state.disabled ? 'disabled' : ''}
                 />
                 <div className="form-check mb-4">
@@ -133,7 +133,7 @@ class AddEducation extends Component {
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
-                  error={errors.description}
+                  error={warnings.description}
                   info="Tell us about the program that you were in"
                 />
                 <input
@@ -153,12 +153,12 @@ class AddEducation extends Component {
 AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { addEducation })(

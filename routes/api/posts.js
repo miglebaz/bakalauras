@@ -44,12 +44,12 @@ router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    const { warnings, isValid } = validatePostInput(req.body);
 
     // Check Validation
     if (!isValid) {
-      // If any errors, send 400 with errors object
-      return res.status(400).json(errors);
+      // If any warnings, send 400 with warnings object
+      return res.status(400).json(warnings);
     }
 
     const newPost = new Post({
@@ -159,12 +159,12 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    const { warnings, isValid } = validatePostInput(req.body);
 
     // Check Validation
     if (!isValid) {
-      // If any errors, send 400 with errors object
-      return res.status(400).json(errors);
+      // If any warnings, send 400 with warnings object
+      return res.status(400).json(warnings);
     }
 
     Post.findById(req.params.id)

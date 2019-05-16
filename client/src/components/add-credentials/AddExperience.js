@@ -17,7 +17,7 @@ class AddExperience extends Component {
       to: '',
       current: false,
       description: '',
-      errors: {},
+      warnings: {},
       disabled: false
     };
 
@@ -27,8 +27,8 @@ class AddExperience extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    if (nextProps.warnings) {
+      this.setState({ warnings: nextProps.warnings });
     }
   }
 
@@ -60,7 +60,7 @@ class AddExperience extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="add-experience">
@@ -81,21 +81,21 @@ class AddExperience extends Component {
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
-                  error={errors.company}
+                  error={warnings.company}
                 />
                 <TextFieldGroup
                   placeholder="* Job Title"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
-                  error={errors.title}
+                  error={warnings.title}
                 />
                 <TextFieldGroup
                   placeholder="Location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
-                  error={errors.location}
+                  error={warnings.location}
                 />
                 <h6>From Date</h6>
                 <TextFieldGroup
@@ -103,7 +103,7 @@ class AddExperience extends Component {
                   type="date"
                   value={this.state.from}
                   onChange={this.onChange}
-                  error={errors.from}
+                  error={warnings.from}
                 />
                 <h6>To Date</h6>
                 <TextFieldGroup
@@ -111,7 +111,7 @@ class AddExperience extends Component {
                   type="date"
                   value={this.state.to}
                   onChange={this.onChange}
-                  error={errors.to}
+                  error={warnings.to}
                   disabled={this.state.disabled ? 'disabled' : ''}
                 />
                 <div className="form-check mb-4">
@@ -133,7 +133,7 @@ class AddExperience extends Component {
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
-                  error={errors.description}
+                  error={warnings.description}
                   info="Tell us about the the position"
                 />
                 <input
@@ -153,12 +153,12 @@ class AddExperience extends Component {
 AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { addExperience })(
