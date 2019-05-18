@@ -13,23 +13,22 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">StudIT - puslapis studentams</h1>
-                <p className="lead">
-                  {' '}
-                  Susikūrk profilį, talpink skelbimus ir atskleisk savo gebėjimus!
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 text-center">
+              {/* <div className="logo"></div> */}
+              <img className="logo" src='./logo.png' />
+              <h1 className="display-3 mb-4">Stud<span style={{ color: "white" }}>IT</span></h1>
+              <p className="lead">
+                {' '}
+                Susikurk profilį, talpink skelbimus ir atskleisk savo gebėjimus!
                 </p>
-                <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
-                  Sign Up
+              <Link to="/register" className="btn btn-lg btn-info mr-2">
+                Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
-                  Login
+              <Link to="/login" className="btn btn-lg btn-light">
+                Login
                 </Link>
-              </div>
             </div>
           </div>
         </div>

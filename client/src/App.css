@@ -1,28 +1,14 @@
-img {
-  width: 100%;
+/* Landing */
+.landing {
+  margin-top: 70px;
 }
 
-.landing {
-  position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
+.logo {
+  width: 400px;
 }
 
 .landing-inner {
   padding-top: 80px;
-}
-
-.dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .card-form {
@@ -38,21 +24,20 @@ img {
   color: #bbb !important;
 }
 
-
 .posts-header {
   display: flex;
   justify-content: center;
   font-size: 24px;
   padding: 20px 0;
   margin: 10px 0;
-  background-color:rgba(71,91,99, 0.3);
+  background-color: rgba(71, 91, 99, 0.3);
   letter-spacing: 2px;
   font-weight: 500;
 }
 
 .posts-title {
   color: white;
-  opacity: 1!important;
+  opacity: 1 !important;
 }
 
 .btn-info {
@@ -66,11 +51,11 @@ img {
 }
 
 .card {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .card:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .delete {
@@ -91,4 +76,12 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+/* Footer component */
+
+.footerContainer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
