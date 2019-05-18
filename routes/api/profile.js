@@ -25,14 +25,14 @@ router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const errors = {};
+    const warnings = {};
 
     Profile.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
       .then(profile => {
         if (!profile) {
-          errors.noprofile = 'There is no profile for this user';
-          return res.status(404).json(errors);
+          warnings.noprofile = 'There is no profile for this user';
+          return res.status(404).json(warnings);
         }
         res.json(profile);
       })
@@ -44,14 +44,14 @@ router.get(
 // @desc    Get all profiles
 // @access  Public
 router.get('/all', (req, res) => {
-  const errors = {};
+  const warnings = {};
 
   Profile.find()
     .populate('user', ['name', 'avatar'])
     .then(profiles => {
       if (!profiles) {
-        errors.noprofile = 'There are no profiles';
-        return res.status(404).json(errors);
+        warnings.noprofile = 'There are no profiles';
+        return res.status(404).json(warnings);
       }
 
       res.json(profiles);
@@ -64,14 +64,14 @@ router.get('/all', (req, res) => {
 // @access  Public
 
 router.get('/handle/:handle', (req, res) => {
-  const errors = {};
+  const warnings = {};
 
   Profile.findOne({ handle: req.params.handle })
     .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {
-        errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
+        warnings.noprofile = 'There is no profile for this user';
+        res.status(404).json(warnings);
       }
 
       res.json(profile);
@@ -84,14 +84,14 @@ router.get('/handle/:handle', (req, res) => {
 // @access  Public
 
 router.get('/user/:user_id', (req, res) => {
-  const errors = {};
+  const warnings = {};
 
   Profile.findOne({ user: req.params.user_id })
     .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {
-        errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
+        warnings.noprofile = 'There is no profile for this user';
+        res.status(404).json(warnings);
       }
 
       res.json(profile);
@@ -108,12 +108,12 @@ router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateProfileInput(req.body);
+    const { warnings, isValid } = validateProfileInput(req.body);
 
     // Check Validation
     if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
+      // Return any warnings with 400 status
+      return res.status(400).json(warnings);
     }
 
     // Get fields
@@ -154,8 +154,8 @@ router.post(
         // Check if handle exists
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
           if (profile) {
-            errors.handle = 'That handle already exists';
-            res.status(400).json(errors);
+            warnings.handle = 'That handle already exists';
+            res.status(400).json(warnings);
           }
 
           // Save Profile
@@ -173,12 +173,12 @@ router.post(
   '/experience',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateExperienceInput(req.body);
+    const { warnings, isValid } = validateExperienceInput(req.body);
 
     // Check Validation
     if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
+      // Return any warnings with 400 status
+      return res.status(400).json(warnings);
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
@@ -207,12 +207,12 @@ router.post(
   '/education',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateEducationInput(req.body);
+    const { warnings, isValid } = validateEducationInput(req.body);
 
     // Check Validation
     if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
+      // Return any warnings with 400 status
+      return res.status(400).json(warnings);
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {

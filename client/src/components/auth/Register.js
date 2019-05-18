@@ -13,7 +13,7 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -27,8 +27,8 @@ class Register extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    if (nextProps.warnings) {
+      this.setState({ warnings: nextProps.warnings });
     }
   }
 
@@ -50,7 +50,7 @@ class Register extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="register">
@@ -67,7 +67,7 @@ class Register extends Component {
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
-                  error={errors.name}
+                  error={warnings.name}
                 />
                 <TextFieldGroup
                   placeholder="Email"
@@ -75,7 +75,7 @@ class Register extends Component {
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  error={errors.email}
+                  error={warnings.email}
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
                 <TextFieldGroup
@@ -84,7 +84,7 @@ class Register extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors.password}
+                  error={warnings.password}
                 />
                 <TextFieldGroup
                   placeholder="Confirm Password"
@@ -92,7 +92,7 @@ class Register extends Component {
                   type="password"
                   value={this.state.password2}
                   onChange={this.onChange}
-                  error={errors.password2}
+                  error={warnings.password2}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -107,12 +107,12 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { registerUser })(withRouter(Register));

@@ -9,7 +9,7 @@ class CommentForm extends Component {
     super(props);
     this.state = {
       text: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -17,8 +17,8 @@ class CommentForm extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+    if (newProps.warnings) {
+      this.setState({ warnings: newProps.warnings });
     }
   }
 
@@ -43,7 +43,7 @@ class CommentForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
       <div className="post-form mb-3">
@@ -59,7 +59,7 @@ class CommentForm extends Component {
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
-                  error={errors.text}
+                  error={warnings.text}
                 />
               </div>
               <button type="submit" className="btn btn-dark">
@@ -77,12 +77,12 @@ CommentForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { addComment })(CommentForm);

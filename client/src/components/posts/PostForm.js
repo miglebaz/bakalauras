@@ -9,7 +9,7 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      errors: {}
+      warnings: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -17,8 +17,8 @@ class PostForm extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+    if (newProps.warnings) {
+      this.setState({ warnings: newProps.warnings });
     }
   }
 
@@ -42,29 +42,11 @@ class PostForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { warnings } = this.state;
 
     return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Somthing...</div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <TextAreaFieldGroup
-                  placeholder="Create a post"
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.onChange}
-                  error={errors.text}
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
+      <div className="posts-header">
+        <span className="posts-title">Skelbimai</span>
       </div>
     );
   }
@@ -73,12 +55,12 @@ class PostForm extends Component {
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  warnings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  warnings: state.warnings
 });
 
 export default connect(mapStateToProps, { addPost })(PostForm);
