@@ -1,3 +1,17 @@
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  padding-bottom: 80px;
+}
+
+.rounded-circle {
+  width: 78px;
+  height: 78px;
+}
+
 /* Landing */
 .landing {
   margin-top: 70px;
@@ -9,6 +23,12 @@
 
 .landing-inner {
   padding-top: 80px;
+}
+
+/* Login */
+
+.login {
+  margin-top: 150px;
 }
 
 .card-form {

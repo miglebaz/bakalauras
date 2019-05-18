@@ -53,34 +53,32 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in to your DevConnector account
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">Prisijungti</h1>
+            <p className="lead text-center">
+              Prisijunk prie savo profilio
               </p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={warnings.email}
-                />
+            <form onSubmit={this.onSubmit}>
+              <TextFieldGroup
+                placeholder="el. paštas"
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                error={warnings.email}
+              />
 
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={warnings.password}
-                />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
+              <TextFieldGroup
+                placeholder="slaptažodis"
+                name="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                error={warnings.password}
+              />
+              <input type="submit" className="btn btn-info btn-block mt-4" />
+            </form>
           </div>
         </div>
       </div>
