@@ -143,7 +143,7 @@ export const getProfiles = () => dispatch => {
 
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
-  if (window.confirm('Are you sure? This can NOT be undone!')) {
+  if (window.confirm('Ar jūs tikrai norite ištrinti savo profilį? Taip prarasite savo paskyrą negrįžtamai!')) {
     axios
       .delete('/api/profile')
       .then(res =>

@@ -9,6 +9,7 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
+      //initial state
       name: '',
       email: '',
       password: '',
@@ -63,23 +64,23 @@ class Register extends Component {
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Name"
+                  placeholder="Vardas"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                   error={warnings.name}
                 />
                 <TextFieldGroup
-                  placeholder="Email"
+                  placeholder="EL. paštas"
                   name="email"
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
                   error={warnings.email}
-                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                  //info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
                 <TextFieldGroup
-                  placeholder="Password"
+                  placeholder="Slaptažodis"
                   name="password"
                   type="password"
                   value={this.state.password}
@@ -87,7 +88,7 @@ class Register extends Component {
                   error={warnings.password}
                 />
                 <TextFieldGroup
-                  placeholder="Confirm Password"
+                  placeholder="Pakartotinis slaptažodis"
                   name="password2"
                   type="password"
                   value={this.state.password2}
