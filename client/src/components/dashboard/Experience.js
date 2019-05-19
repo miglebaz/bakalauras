@@ -19,10 +19,10 @@ class Experience extends Component {
           {exp.to === null ? (
             ' Now'
           ) : (
-            <Moment format="YYYY/MM/DD">{exp.to}</Moment>
-          )}
+              <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+            )}
         </td>
-        <td>
+        <td className="delete-button">
           <button
             onClick={this.onDeleteClick.bind(this, exp._id)}
             className="btn btn-danger"

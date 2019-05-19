@@ -18,6 +18,19 @@
   border: none;
 }
 
+.profile-header-container {
+  background-color: #343a40 !important;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+}
+
+.text-info {
+  color: #343a40 !important;
+}
+
 .rounded-circle {
   width: 78px;
   height: 78px;
@@ -69,6 +82,10 @@
   align-items: center;
 }
 
+.profile-link-buttons {
+  background-color: #eeefef;
+}
+
 .posts-header {
   display: flex;
   justify-content: center;
@@ -79,6 +96,12 @@
   letter-spacing: 1px;
   font-weight: 500;
   border-radius: 4px;
+  width: 100%;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .posts-title {
