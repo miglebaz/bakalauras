@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class Landing extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/feed');
     }
   }
 
@@ -16,7 +16,6 @@ class Landing extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              {/* <div className="logo"></div> */}
               <img className="logo" src='./logo.png' />
               <h1 className="display-3 mb-4">Stud<span style={{ color: "white" }}>IT</span></h1>
               <p className="lead">

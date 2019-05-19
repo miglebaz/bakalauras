@@ -7,6 +7,11 @@
   padding-bottom: 80px;
 }
 
+.nav-icon {
+  width: 25px !important;
+  height: 25px !important;
+}
+
 .rounded-circle {
   width: 78px;
   height: 78px;
@@ -44,15 +49,24 @@
   color: #bbb !important;
 }
 
+.card-header {
+  background-color: #2e5266 !important;
+}
+
+.post-header-container {
+  margin-top: 20px;
+}
+
 .posts-header {
   display: flex;
   justify-content: center;
-  font-size: 24px;
+  font-size: 20px;
   padding: 20px 0;
   margin: 10px 0;
-  background-color: rgba(71, 91, 99, 0.3);
-  letter-spacing: 2px;
+  background-color: rgba(71, 91, 99);
+  letter-spacing: 1px;
   font-weight: 500;
+  border-radius: 4px;
 }
 
 .posts-title {
@@ -104,4 +118,21 @@
   position: absolute;
   width: 100%;
   bottom: 0;
+}
+
+.choose-container {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.choose-item {
+  flex: 1 !important;
+}
+
+.active {
+  background-color: black !important;
+}
+
+.reg-container {
+  margin-top: 80px;
 }

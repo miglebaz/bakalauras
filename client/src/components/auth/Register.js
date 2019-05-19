@@ -55,14 +55,22 @@ class Register extends Component {
 
     return (
       <div className="register">
-        <div className="container">
+        <div className="reg-container container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
+              <h1 className="display-4 text-center">Registracija</h1>
               <p className="lead text-center">
-                Create your DevConnector account
+                Susikurkite Stud<span style={{ color: "white" }}>IT</span> profilį
               </p>
               <form noValidate onSubmit={this.onSubmit}>
+                <div class="choose-container btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="choose-item btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked /> Studentas
+                </label>
+                  <label class="choose-item btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off" /> Darbdavys
+                </label>
+                </div>
                 <TextFieldGroup
                   placeholder="Vardas"
                   name="name"
@@ -77,7 +85,7 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   error={warnings.email}
-                  //info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                //info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
                 <TextFieldGroup
                   placeholder="Slaptažodis"

@@ -3,12 +3,45 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import PostFeed from './PostFeed';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 
 class Posts extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+      warnings: {}
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+
   componentDidMount() {
     this.props.getPosts();
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+
+    const newPost = {
+      text: this.state.text,
+      name: user.name,
+      avatar: user.avatar
+    };
+
+    this.props.addPost(newPost);
+    this.setState({ text: '' });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -26,8 +59,11 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <PostForm />
+              <div className="posts-header">
+                <span className="posts-title">Skelbimai</span>
+              </div>
               {postContent}
+              <PostForm />
             </div>
           </div>
         </div>

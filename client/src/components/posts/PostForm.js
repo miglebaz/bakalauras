@@ -42,11 +42,26 @@ class PostForm extends Component {
   }
 
   render() {
-    const { warnings } = this.state;
-
     return (
-      <div className="posts-header">
-        <span className="posts-title">Skelbimai</span>
+      <div className="post-header-container post-form mb-3">
+        <div className="card card-info">
+          <div className="card-header bg-info text-white">Įdėti skelbimą</div>
+          <div className="card-body">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <TextAreaFieldGroup
+                  placeholder="skelbimo tekstas"
+                  name="text"
+                  value={this.state.text}
+                  onChange={this.onChange}
+                />
+              </div>
+              <button type="submit" className="btn btn-dark">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
