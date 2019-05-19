@@ -10,6 +10,12 @@
 .nav-icon {
   width: 25px !important;
   height: 25px !important;
+  margin-left: 5px;
+}
+
+.nav-button {
+  background-color: #343a40;
+  border: none;
 }
 
 .rounded-circle {
@@ -50,11 +56,17 @@
 }
 
 .card-header {
-  background-color: #2e5266 !important;
+  background-color: #2f4858 !important;
 }
 
 .post-header-container {
   margin-top: 20px;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: flex;
+  align-items: center;
 }
 
 .posts-header {

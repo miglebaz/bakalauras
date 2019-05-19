@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
-import { clearCurrentProfile } from '../../actions/profileActions';
+import { clearCurrentProfile, getCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
@@ -14,30 +20,32 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { profile } = this.props.profile;
+
+    console.log(profile)
+
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <a
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
-            <img
-              className="rounded-circle nav-icon"
-              src={user.avatar}
-              alt={user.name}
-              style={{ width: '25px', marginRight: '5px' }}
-              title="You must have a Gravatar connected to your email to display an image"
-            />{' '}
-            Logout
-          </a>
-        </li>
+        <div class="dropdown">
+          <button class="nav-button btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li className="nav-item">
+              Profilio nustatymai {' '}
+              <img
+                className="rounded-circle nav-icon"
+                src={user.avatar}
+                alt={user.name}
+                style={{ width: '25px', marginRight: '5px' }}
+                title="You must have a Gravatar connected to your email to display an image"
+              />{' '}
+            </li>
+          </button>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <Link className="dropdown-item" to="/dashboard">Koreguoti profilį</Link>
+            {profile && <Link className="dropdown-item" to={`/profile/${profile.handle}`}>Peržiūrėti profilį</Link>}
+            <a className="dropdown-item" onClick={this.onLogoutClick.bind(this)} href="#">Atsijungti</a>
+          </div>
+        </div>
       </ul>
     );
 
@@ -96,9 +104,12 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
+export default connect(mapStateToProps, { logoutUser, getCurrentProfile, clearCurrentProfile })(
   Navbar
 );
+
+
