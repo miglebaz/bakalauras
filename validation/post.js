@@ -6,8 +6,8 @@ module.exports = function validateUsersPostInput(data) {
 
   data.text = !isEmpty(data.text) ? data.text : '';
 
-  if (!Validator.isLength(data.text, { min: 25, max: 350 })) {
-    warnings.text = 'Skelbimas turi būti mažiausiai 25 simbolių';
+  if (!Validator.isLength(data.text, { min: 9, max: 345 })) {
+    warnings.text = 'Skelbimas turi būti mažiausiai 10 simbolių';
   }
 
   if (Validator.isEmpty(data.text)) {
