@@ -1,26 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+
 const passport = require('passport');
 
-// Load Validation
-const validateProfileInput = require('../../validation/profile');
-const validateExperienceInput = require('../../validation/experience');
+
+const validateUsersProfileInput = require('../../validation/profile');
+const validateUsersExpInput = require('../../validation/experience');
 const validateEducationInput = require('../../validation/education');
 
-// Load Profile Model
+//schema User and Profile
 const Profile = require('../../models/Profile');
-// Load User Model
+
 const User = require('../../models/User');
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
+//GET api/profile/test
+
 router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
 
-// @route   GET api/profile
-// @desc    Get current users profile
-// @access  Private
+//GET api/profile
+
 router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
@@ -40,9 +38,7 @@ router.get(
   }
 );
 
-// @route   GET api/profile/all
-// @desc    Get all profiles
-// @access  Public
+//GET api/profile/all
 router.get('/all', (req, res) => {
   const warnings = {};
 
@@ -59,10 +55,7 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
 });
 
-// @route   GET api/profile/handle/:handle
-// @desc    Get profile by handle
-// @access  Public
-
+//GET api/profile/handle/:handle
 router.get('/handle/:handle', (req, res) => {
   const warnings = {};
 
@@ -79,7 +72,7 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/profile/user/:user_id
+//GET api/profile/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
 
@@ -101,14 +94,14 @@ router.get('/user/:user_id', (req, res) => {
     );
 });
 
-// @route   POST api/profile
+//POST api/profile
 // @desc    Create or edit user profile
 // @access  Private
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { warnings, isValid } = validateProfileInput(req.body);
+    const { warnings, isValid } = validateUsersProfileInput(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -166,14 +159,14 @@ router.post(
   }
 );
 
-// @route   POST api/profile/experience
+//POST api/profile/experience
 // @desc    Add experience to profile
 // @access  Private
 router.post(
   '/experience',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { warnings, isValid } = validateExperienceInput(req.body);
+    const { warnings, isValid } = validateUsersExpInput(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -200,7 +193,7 @@ router.post(
   }
 );
 
-// @route   POST api/profile/education
+//POST api/profile/education
 // @desc    Add education to profile
 // @access  Private
 router.post(
@@ -234,7 +227,7 @@ router.post(
   }
 );
 
-// @route   DELETE api/profile/experience/:exp_id
+//DELETE api/profile/experience/:exp_id
 // @desc    Delete experience from profile
 // @access  Private
 router.delete(
@@ -258,7 +251,7 @@ router.delete(
   }
 );
 
-// @route   DELETE api/profile/education/:edu_id
+//DELETE api/profile/education/:edu_id
 // @desc    Delete education from profile
 // @access  Private
 router.delete(
@@ -282,7 +275,7 @@ router.delete(
   }
 );
 
-// @route   DELETE api/profile
+//DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
 router.delete(

@@ -34,13 +34,13 @@ class Education extends Component {
     ));
     return (
       <div>
-        <h4 className="mb-4">Education Credentials</h4>
+        <h4 className="mb-4">Išsilavinimas, kursai ar mokymai</h4>
         <table className="table">
           <thead>
             <tr>
-              <th>School</th>
-              <th>Degree</th>
-              <th>Years</th>
+              <th>Įstaiga</th>
+              <th>Sritis</th>
+              <th>Laikotarpis</th>
               <th />
             </tr>
             {education}

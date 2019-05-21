@@ -27,20 +27,20 @@ class Experience extends Component {
             onClick={this.onDeleteClick.bind(this, exp._id)}
             className="btn btn-danger"
           >
-            Delete
+            Ištrinti
           </button>
         </td>
       </tr>
     ));
     return (
       <div>
-        <h4 className="mb-4">Experience Credentials</h4>
+        <h4 className="mb-4">Aprašyk savo darbo, praktikos, ar projektų patirtis</h4>
         <table className="table">
           <thead>
             <tr>
-              <th>Company</th>
-              <th>Title</th>
-              <th>Years</th>
+              <th>Organizacija</th>
+              <th>Pareigos</th>
+              <th>Laikotarpis</th>
               <th />
             </tr>
             {experience}

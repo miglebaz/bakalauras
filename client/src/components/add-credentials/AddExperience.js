@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -76,21 +76,21 @@ class AddExperience extends Component {
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
+                <TextBox
                   placeholder="* Company"
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
                   error={warnings.company}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="* Job Title"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
                   error={warnings.title}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Location"
                   name="location"
                   value={this.state.location}
@@ -98,7 +98,7 @@ class AddExperience extends Component {
                   error={warnings.location}
                 />
                 <h6>From Date</h6>
-                <TextFieldGroup
+                <TextBox
                   name="from"
                   type="date"
                   value={this.state.from}
@@ -106,7 +106,7 @@ class AddExperience extends Component {
                   error={warnings.from}
                 />
                 <h6>To Date</h6>
-                <TextFieldGroup
+                <TextBox
                   name="to"
                   type="date"
                   value={this.state.to}

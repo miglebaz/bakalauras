@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
@@ -128,7 +128,7 @@ class CreateProfile extends Component {
       socialInputs = (
         <div>
           <InputGroup
-            placeholder="Twitter Profile URL"
+            placeholder="Twitter profilio URL"
             name="twitter"
             icon="fab fa-twitter"
             value={this.state.twitter}
@@ -137,7 +137,7 @@ class CreateProfile extends Component {
           />
 
           <InputGroup
-            placeholder="Facebook Page URL"
+            placeholder="Facebook puslapio URL"
             name="facebook"
             icon="fab fa-facebook"
             value={this.state.facebook}
@@ -146,7 +146,7 @@ class CreateProfile extends Component {
           />
 
           <InputGroup
-            placeholder="Linkedin Profile URL"
+            placeholder="Linkedin profilio URL"
             name="linkedin"
             icon="fab fa-linkedin"
             value={this.state.linkedin}
@@ -155,7 +155,7 @@ class CreateProfile extends Component {
           />
 
           <InputGroup
-            placeholder="YouTube Channel URL"
+            placeholder="YouTube kanalo URL"
             name="youtube"
             icon="fab fa-youtube"
             value={this.state.youtube}
@@ -164,7 +164,7 @@ class CreateProfile extends Component {
           />
 
           <InputGroup
-            placeholder="Instagram Page URL"
+            placeholder="Instagram puslapio URL"
             name="instagram"
             icon="fab fa-instagram"
             value={this.state.instagram}
@@ -177,15 +177,16 @@ class CreateProfile extends Component {
 
     // Select options for status
     const options = [
-      { label: '* Select Professional Status', value: 0 },
-      { label: 'Developer', value: 'Developer' },
-      { label: 'Junior Developer', value: 'Junior Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
-      { label: 'Manager', value: 'Manager' },
-      { label: 'Student or Learning', value: 'Student or Learning' },
-      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
-      { label: 'Intern', value: 'Intern' },
-      { label: 'Other', value: 'Other' }
+      { label: 'Pasirink norimą sritį', value: 0 },
+      { label: 'Programuotojas', value: 'Programuotojas' },
+      { label: 'Grafikos dizaineris', value: 'Grafikos dizaineris' },
+      { label: 'WEB programuotojas', value: 'WEB programuotojas' },
+      { label: 'Front-end programuotojas', value: 'Front-end programuotojas' },
+      { label: 'Back-end programuotojas', value: 'Back-end programuotojas' },
+      { label: 'SEO/SEO', value: 'SEO/SEO' },
+      { label: 'CMS administratorius', value: 'CMS administratorius' },
+      { label: 'Testuotojas', value: 'Testuotojas' },
+      { label: 'Kita', value: 'Kita' }
     ];
 
     return (
@@ -193,79 +194,61 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
-                Go Back
-              </Link>
-              <h1 className="display-4 text-center">Edit Profile</h1>
-              <small className="d-block pb-3">* = required fields</small>
+              <Link to="/dashboard" className="btn btn-light">Atgal</Link>
+              <h1 className="display-4 text-center">Redaguoti profilį</h1>
+              <small className="d-block pb-3"></small>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Profile Handle"
+                <TextBox
+                  placeholder="Profilio vardas(privalomas)"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={warnings.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  info="Trumpai apie save"
                 />
                 <SelectListGroup
-                  placeholder="Status"
+                  placeholder="Sritis"
                   name="status"
                   value={this.state.status}
                   onChange={this.onChange}
                   options={options}
                   error={warnings.status}
-                  info="Give us an idea of where you are at in your career"
+                  info="Kur nori būti savo karjeroje(privaloma)"
                 />
-                <TextFieldGroup
-                  placeholder="Company"
-                  name="company"
-                  value={this.state.company}
-                  onChange={this.onChange}
-                  error={warnings.company}
-                  info="Could be your own company or one you work for"
-                />
-                <TextFieldGroup
+                
+                <TextBox
                   placeholder="Website"
                   name="website"
                   value={this.state.website}
                   onChange={this.onChange}
                   error={warnings.website}
-                  info="Could be your own website or a company one"
+                  info="CV puslapis"
                 />
-                <TextFieldGroup
-                  placeholder="Location"
+                
+                <TextBox
+                  placeholder="Vieta"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
                   error={warnings.location}
-                  info="City or city & state suggested (eg. Boston, MA)"
+                  info="Vieta"
                 />
-                <TextFieldGroup
-                  placeholder="* Skills"
+                <TextBox
+                  placeholder="Įgūdžiai(privaloma)"
                   name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={warnings.skills}
-                  info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
+                  info="Atskirk savo įgūdžius per kablelį (pvz. Javscript,React..)"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Github Username"
                   name="githubusername"
                   value={this.state.githubusername}
                   onChange={this.onChange}
                   error={warnings.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
+                  info="Įtrauk savo projektus"
                 />
-                <TextAreaFieldGroup
-                  placeholder="Short Bio"
-                  name="bio"
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                  error={warnings.bio}
-                  info="Tell us a little about yourself"
-                />
-
                 <div className="mb-3">
                   <button
                     type="button"
@@ -276,11 +259,21 @@ class CreateProfile extends Component {
                     }}
                     className="btn btn-light"
                   >
-                    Add Social Network Links
+                    Pridėk socialinius tinklus
                   </button>
-                  <span className="text-muted">Optional</span>
+                  <span className="text-muted ">  Neprivaloma</span>
                 </div>
+                
                 {socialInputs}
+                
+                <TextAreaFieldGroup
+                  placeholder="Aprašymas"
+                  name="bio"
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                  error={warnings.bio}
+                  info="Papasakok apie save"
+                />
                 <input
                   type="submit"
                   value="Submit"

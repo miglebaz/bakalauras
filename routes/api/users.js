@@ -8,23 +8,20 @@ const passport = require('passport');
 
 // Load Input Validation
 const validateNewUserInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateUsersLogInput = require('../../validation/login');
 
-// Load User model
+// schema User
 const User = require('../../models/User');
 
 // @route   GET api/users/test
-// @desc    Tests users route
-// @access  Public
+
 router.get('/test', (request, response) => response.json({ msg: 'Users Works' }));
 
-// @route   POST api/users/register
-// @desc    Register user
-// @access  Public
-router.post('/register', (request, response) => {
+
+
+router.post('/register', (request, response) => { //api/users/register
   const { warnings, isValid } = validateNewUserInput(request.body);
 
-  // Check Validation
   if (!isValid) {
     return response.status(400).json(warnings);
   }
@@ -65,9 +62,8 @@ router.post('/register', (request, response) => {
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.post('/login', (request, response) => {
-  const { warnings, isValid } = validateLoginInput(request.body);
+  const { warnings, isValid } = validateUsersLogInput(request.body);
 
-  // Check Validation
   if (!isValid) {
     return response.status(400).json(warnings);
   }

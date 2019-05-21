@@ -9,7 +9,7 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      warnings: {}
+      warnings: {},
     };
 
     this.onChange = this.onChange.bind(this);
@@ -30,7 +30,8 @@ class PostForm extends Component {
     const newPost = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
+      date: this.state.date
     };
 
     this.props.addPost(newPost);
@@ -57,7 +58,7 @@ class PostForm extends Component {
                 />
               </div>
               <button type="submit" className="btn btn-dark">
-                Submit
+                Patalpinti
               </button>
             </form>
           </div>

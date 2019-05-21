@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
@@ -146,8 +146,8 @@ class CreateProfile extends Component {
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
         
-                <TextFieldGroup
-                  placeholder="* Profile Handle"
+                <TextBox
+                  placeholder="* Profile handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
@@ -163,7 +163,7 @@ class CreateProfile extends Component {
                   error={warnings.status}
                   info="Give us an idea of where you are at in your career"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Company"
                   name="company"
                   value={this.state.company}
@@ -171,7 +171,7 @@ class CreateProfile extends Component {
                   error={warnings.company}
                   info="Could be your own company or one you work for"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Website"
                   name="website"
                   value={this.state.website}
@@ -179,7 +179,7 @@ class CreateProfile extends Component {
                   error={warnings.website}
                   info="Could be your own website or a company one"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Location"
                   name="location"
                   value={this.state.location}
@@ -187,7 +187,7 @@ class CreateProfile extends Component {
                   error={warnings.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="* Skills"
                   name="skills"
                   value={this.state.skills}
@@ -196,7 +196,7 @@ class CreateProfile extends Component {
                   info="Please use comma separated values (eg.
                     HTML,CSS,JavaScript,PHP"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Github Username"
                   name="githubusername"
                   value={this.state.githubusername}

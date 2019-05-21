@@ -25,7 +25,7 @@ class Navbar extends Component {
     console.log(profile)
 
 
-    const authLinks = (
+    const authenticateNavBarLinks = (
       <ul className="navbar-nav ml-auto">
         <div class="dropdown">
           <button class="nav-button btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +36,7 @@ class Navbar extends Component {
                 src={user.avatar}
                 alt={user.name}
                 style={{ width: '25px', marginRight: '5px' }}
-                title="You must have a Gravatar connected to your email to display an image"
+        
               />{' '}
             </li>
           </button>
@@ -49,7 +49,7 @@ class Navbar extends Component {
       </ul>
     );
 
-    const guestLinks = (
+    const notRegisterUserLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/register">
@@ -91,7 +91,7 @@ class Navbar extends Component {
                 </Link>
             </li>
           </ul>
-          {isAuthenticated ? authLinks : guestLinks}
+          {isAuthenticated ? authenticateNavBarLinks : notRegisterUserLinks}
         </div>
       </nav>
     );

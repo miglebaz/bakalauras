@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // DB Config
 const datebase = require('./config/keys').mongoURI;
 
-// Connect to the database before starting the application server.
+// Connect to the Mongodb database before starting the application server.
 mongoose
   .connect(datebase)
   .then(() => console.log('MongoDB Connected'))

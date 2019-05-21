@@ -22,7 +22,7 @@ class Profiles extends Component {
           <ProfileItem key={profile._id} profile={profile} />
         ));
       } else {
-        profileItems = <h4>No profiles found...</h4>;
+        profileItems = <h4>Profilių nėra</h4>;
       }
     }
 

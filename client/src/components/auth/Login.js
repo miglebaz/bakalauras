@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 
 class Login extends Component {
   constructor() {
@@ -60,7 +60,7 @@ class Login extends Component {
               Prisijunk prie savo profilio
               </p>
             <form onSubmit={this.onSubmit}>
-              <TextFieldGroup
+              <TextBox
                 placeholder="el. paštas"
                 name="email"
                 type="email"
@@ -69,7 +69,7 @@ class Login extends Component {
                 error={warnings.email}
               />
 
-              <TextFieldGroup
+              <TextBox
                 placeholder="slaptažodis"
                 name="password"
                 type="password"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -76,21 +76,21 @@ class AddEducation extends Component {
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
+                <TextBox
                   placeholder="* School"
                   name="school"
                   value={this.state.school}
                   onChange={this.onChange}
                   error={warnings.school}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="* Degree or Certification"
                   name="degree"
                   value={this.state.degree}
                   onChange={this.onChange}
                   error={warnings.degree}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="* Field of Study"
                   name="fieldofstudy"
                   value={this.state.fieldofstudy}
@@ -98,7 +98,7 @@ class AddEducation extends Component {
                   error={warnings.fieldofstudy}
                 />
                 <h6>From Date</h6>
-                <TextFieldGroup
+                <TextBox
                   name="from"
                   type="date"
                   value={this.state.from}
@@ -106,7 +106,7 @@ class AddEducation extends Component {
                   error={warnings.from}
                 />
                 <h6>To Date</h6>
-                <TextFieldGroup
+                <TextBox
                   name="to"
                   type="date"
                   value={this.state.to}

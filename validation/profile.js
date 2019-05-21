@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
-module.exports = function validateProfileInput(data) {
+module.exports = function validateUsersProfileInput(data) {
   let warnings = {};
 
   data.handle = !isEmpty(data.handle) ? data.handle : '';
@@ -9,7 +9,7 @@ module.exports = function validateProfileInput(data) {
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    warnings.handle = 'Handle needs to between 2 and 4 characters';//Handle needs to between 2 and 4 characters
+    warnings.handle = '';//handle needs to between 2 and 4 characters
   }
 
   if (Validator.isEmpty(data.handle)) {
@@ -21,42 +21,42 @@ module.exports = function validateProfileInput(data) {
   }
 
   if (Validator.isEmpty(data.skills)) {
-    warnings.skills = 'Skills field is required';
+    warnings.skills = 'Įgūdžiai yra privalomi';
   }
 
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
-      warnings.website = 'Not a valid URL';
+      warnings.website = 'Blogas adresas';
     }
   }
 
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
-      warnings.youtube = 'Not a valid URL';
+      warnings.youtube = 'Blogas adresas';
     }
   }
 
   if (!isEmpty(data.twitter)) {
     if (!Validator.isURL(data.twitter)) {
-      warnings.twitter = 'Not a valid URL';
+      warnings.twitter = 'Blogas adresas';
     }
   }
 
   if (!isEmpty(data.facebook)) {
     if (!Validator.isURL(data.facebook)) {
-      warnings.facebook = 'Not a valid URL';
+      warnings.facebook = 'Blogas adresas';
     }
   }
 
   if (!isEmpty(data.linkedin)) {
     if (!Validator.isURL(data.linkedin)) {
-      warnings.linkedin = 'Not a valid URL';
+      warnings.linkedin = 'Blogas adresas';
     }
   }
 
   if (!isEmpty(data.instagram)) {
     if (!Validator.isURL(data.instagram)) {
-      warnings.instagram = 'Not a valid URL';
+      warnings.instagram = 'Blogas adresas';
     }
   }
 

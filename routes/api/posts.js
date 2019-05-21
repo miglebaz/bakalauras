@@ -1,24 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+
 const passport = require('passport');
 
-// Post model
+
 const Post = require('../../models/Post');
-// Profile model
+
 const Profile = require('../../models/Profile');
 
 // Validation
-const validatePostInput = require('../../validation/post');
+const validateUsersPostInput = require('../../validation/post');
 
-// @route   GET api/posts/test
-// @desc    Tests post route
-// @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Posts Works' }));
 
-// @route   GET api/posts
-// @desc    Get posts
-// @access  Public
+// api/posts
 router.get('/', (req, res) => {
   Post.find()
     .sort({ date: -1 })
@@ -26,9 +20,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 });
 
-// @route   GET api/posts/:id
-// @desc    Get post by id
-// @access  Public
+//  api/posts/:id
 router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
     .then(post => res.json(post))
@@ -37,18 +29,16 @@ router.get('/:id', (req, res) => {
     );
 });
 
-// @route   POST api/posts
-// @desc    Create post
-// @access  Private
+//POST api/posts
+  // If any warnings, send 400 with warnings object
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { warnings, isValid } = validatePostInput(req.body);
+    const { warnings, isValid } = validateUsersPostInput(req.body);
 
-    // Check Validation
     if (!isValid) {
-      // If any warnings, send 400 with warnings object
+    
       return res.status(400).json(warnings);
     }
 
@@ -63,9 +53,8 @@ router.post(
   }
 );
 
-// @route   DELETE api/posts/:id
-// @desc    Delete post
-// @access  Private
+//  DELETE api/posts/:id
+
 router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),
@@ -73,25 +62,20 @@ router.delete(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.id)
         .then(post => {
-          // Check for post owner
-          if (post.user.toString() !== req.user.id) {
+          if (post.user.toString() !== req.user.id) {  // WHAT user's post
             return res
               .status(401)
-              .json({ notauthorized: 'User not authorized' });
+              .json({ notauthorized: 'Vartotojas yra neprisiregistravęs' });
           }
-
-          // Delete
-          post.remove().then(() => res.json({ success: true }));
+          post.remove().then(() => res.json({ success: true })); // remove post
         })
-        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+        .catch(err => res.status(404).json({ postnotfound: 'Skelbimas nerastas' }));
     });
   }
 );
 
-// @route   POST api/posts/like/:id
-// @desc    Like post
-// @access  Private
-router.post(
+
+router.post( // api/posts/like/:id 
   '/like/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -107,20 +91,17 @@ router.post(
               .json({ alreadyliked: 'User already liked this post' });
           }
 
-          // Add user id to likes array
-          post.likes.unshift({ user: req.user.id });
+          post.likes.unshift({ user: req.user.id }); // add id of user to (likes)array 
 
           post.save().then(post => res.json(post));
         })
-        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+        .catch(err => res.status(404).json({ postnotfound: 'Skelbimas nerastas' }));
     });
   }
 );
 
-// @route   POST api/posts/unlike/:id
-// @desc    Unlike post
-// @access  Private
-router.post(
+
+router.post( //  api/posts/unlike/:id
   '/unlike/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -133,7 +114,7 @@ router.post(
           ) {
             return res
               .status(400)
-              .json({ notliked: 'You have not yet liked this post' });
+              .json({ notliked: 'Dar nepamėgtas skelbimas' });
           }
 
           // Get remove index
@@ -159,7 +140,7 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { warnings, isValid } = validatePostInput(req.body);
+    const { warnings, isValid } = validateUsersPostInput(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -186,9 +167,8 @@ router.post(
   }
 );
 
-// @route   DELETE api/posts/comment/:id/:comment_id
-// @desc    Remove comment from post
-// @access  Private
+// api/posts/comment/:id/:comment_id
+
 router.delete(
   '/comment/:id/:comment_id',
   passport.authenticate('jwt', { session: false }),
@@ -210,10 +190,9 @@ router.delete(
         const removeIndex = post.comments
           .map(item => item._id.toString())
           .indexOf(req.params.comment_id);
-
-        // Splice comment out of array
-        post.comments.splice(removeIndex, 1);
-
+    
+        post.comments.splice(removeIndex, 1); // Remove comment
+// save new 
         post.save().then(post => res.json(post));
       })
       .catch(err => res.status(404).json({ postnotfound: 'No post found' }));

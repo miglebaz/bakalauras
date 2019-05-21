@@ -23,10 +23,10 @@ class Landing extends Component {
                 Susikurk profilį, talpink skelbimus ir atskleisk savo gebėjimus!
                 </p>
               <Link to="/register" className="btn btn-lg btn-info mr-2">
-                Sign Up
+                Registracija
                 </Link>
               <Link to="/login" className="btn btn-lg btn-light">
-                Login
+                Prisijungimas
                 </Link>
             </div>
           </div>

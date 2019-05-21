@@ -86,7 +86,6 @@ export const addEducation = (eduData, history) => dispatch => {
     );
 };
 
-// Delete Experience
 export const deleteExperience = id => dispatch => {
   axios
     .delete(`/api/profile/experience/${id}`)
@@ -104,7 +103,7 @@ export const deleteExperience = id => dispatch => {
     );
 };
 
-// Delete Education
+
 export const deleteEducation = id => dispatch => {
   axios
     .delete(`/api/profile/education/${id}`)
@@ -122,7 +121,6 @@ export const deleteEducation = id => dispatch => {
     );
 };
 
-// Get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -141,9 +139,11 @@ export const getProfiles = () => dispatch => {
     );
 };
 
-// Delete account & profile
+// Delete account  and profile
 export const deleteAccount = () => dispatch => {
+  
   if (window.confirm('Ar jūs tikrai norite ištrinti savo profilį? Taip prarasite savo paskyrą negrįžtamai!')) {
+    //add confirmation
     axios
       .delete('/api/profile')
       .then(res =>

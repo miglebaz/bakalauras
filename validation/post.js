@@ -1,17 +1,17 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
-module.exports = function validatePostInput(data) {
+module.exports = function validateUsersPostInput(data) {
   let warnings = {};
 
   data.text = !isEmpty(data.text) ? data.text : '';
 
-  if (!Validator.isLength(data.text, { min: 10, max: 300 })) {
-    warnings.text = 'Post must be between 10 and 300 characters';
+  if (!Validator.isLength(data.text, { min: 25, max: 350 })) {
+    warnings.text = 'Skelbimas turi būti mažiausiai 25 simbolių';
   }
 
   if (Validator.isEmpty(data.text)) {
-    warnings.text = 'Text field is required';
+    warnings.text = 'Teksto laukas yra privalomas';
   }
 
   return {

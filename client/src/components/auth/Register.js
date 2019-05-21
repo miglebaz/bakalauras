@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextBox from '../common/TextBox';
 
 class Register extends Component {
   constructor() {
@@ -63,31 +63,30 @@ class Register extends Component {
                 Susikurkite Stud<span style={{ color: "white" }}>IT</span> profilį
               </p>
               <form noValidate onSubmit={this.onSubmit}>
-                <div class="choose-container btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="choose-item btn btn-secondary active">
+                <div className="choose-container btn-group btn-group-toggle" data-toggle="buttons">
+                  <label className="choose-item btn btn-secondary active">
                     <input type="radio" name="options" id="option1" autocomplete="off" checked /> Studentas
                 </label>
-                  <label class="choose-item btn btn-secondary">
+                  <label className="choose-item btn btn-secondary">
                     <input type="radio" name="options" id="option2" autocomplete="off" /> Darbdavys
                 </label>
                 </div>
-                <TextFieldGroup
+                <TextBox
                   placeholder="Vardas"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                   error={warnings.name}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="EL. paštas"
                   name="email"
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
                   error={warnings.email}
-                //info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Slaptažodis"
                   name="password"
                   type="password"
@@ -95,7 +94,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={warnings.password}
                 />
-                <TextFieldGroup
+                <TextBox
                   placeholder="Pakartotinis slaptažodis"
                   name="password2"
                   type="password"
