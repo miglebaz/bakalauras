@@ -20,6 +20,7 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { userType } = user;
     const { profile } = this.props.profile;
 
     console.log(profile)
@@ -41,8 +42,8 @@ class Navbar extends Component {
             </li>
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link className="dropdown-item" to="/dashboard">Koreguoti profilį</Link>
-            {profile && <Link className="dropdown-item" to={`/profile/${profile.handle}`}>Peržiūrėti profilį</Link>}
+            { userType === 'STUDENT' && <Link className="dropdown-item" to="/dashboard">Koreguoti profilį</Link>}
+            { profile && userType === 'STUDENT' && <Link className="dropdown-item" to={`/profile/${profile.handle}`}>Peržiūrėti profilį</Link>}
             <a className="dropdown-item" onClick={this.onLogoutClick.bind(this)} href="#">Atsijungti</a>
           </div>
         </div>

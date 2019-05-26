@@ -5,11 +5,16 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextBox from '../common/TextBox';
 
+const USER_TYPE_STUDENT = 'STUDENT';
+const USER_TYPE_EMPLOYER= 'EMPLOYER';
+
+
 class Register extends Component {
   constructor() {
     super();
     this.state = {
       //initial state
+      userType: USER_TYPE_STUDENT,
       name: '',
       email: '',
       password: '',
@@ -17,6 +22,7 @@ class Register extends Component {
       warnings: {}
     };
 
+    this.onUserTypeChange = this.onUserTypeChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -33,18 +39,28 @@ class Register extends Component {
     }
   }
 
+  onUserTypeChange(userType) {
+    this.setState({
+      userType
+    })
+  }
+
   onChange(e) {
+    console.log(e);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
 
+    const { userType } = this.state;
+
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      userType
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -64,10 +80,10 @@ class Register extends Component {
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="choose-container btn-group btn-group-toggle" data-toggle="buttons">
-                  <label className="choose-item btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked /> Studentas
+                  <label  onClick={()=> { this.onUserTypeChange(USER_TYPE_STUDENT) }} name="student" className="choose-item btn btn-secondary active">
+                    <input value type="radio" name="options" id="option1" autocomplete="off" checked /> Studentas
                 </label>
-                  <label className="choose-item btn btn-secondary">
+                  <label onClick={()=> { this.onUserTypeChange(USER_TYPE_EMPLOYER) }} className="choose-item btn btn-secondary">
                     <input type="radio" name="options" id="option2" autocomplete="off" /> Darbdavys
                 </label>
                 </div>
