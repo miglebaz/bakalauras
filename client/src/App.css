@@ -7,6 +7,13 @@
   padding-bottom: 80px;
 }
 
+.post-picture-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .nav-icon {
   width: 25px !important;
   height: 25px !important;
@@ -97,6 +104,21 @@
   font-weight: 500;
   border-radius: 4px;
   width: 100%;
+}
+
+.employer-card {
+  background-color: #fad8c9;
+}
+
+.student-card {
+  background-color: #faf7e0;
+}
+
+
+
+.user-type p {
+  text-align: center;
+  margin: 0;
 }
 
 .delete-button {

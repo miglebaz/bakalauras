@@ -28,22 +28,24 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, auth, showActions, handle } = this.props;
 
     return (
-      <div className="card card-body mb-3">
+      <div className={`card card-body mb-3 ${post.userType === 'EMPLOYER' ?  'employer-card'  : 'student-card' }`}>
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={post.avatar}
-                alt=""
-              />
-            </a>
+              <Link to={`/profile/${handle[post.user]}`}>
+                <div className="post-picture-container">
+                  <img
+                    className="rounded-circle d-none d-md-block"
+                    src={post.avatar}
+                    alt=""
+                  />
+                </div>
+              </Link>
+              <p className="text-center">{post.name}</p>
+              <div className="user-type" style={{fontWeight: "bold"}}>{post.userType === 'STUDENT' ? <p>Studentas</p> : <p>Darbdavys</p>}</div>
             <br />
-            <p className="text-center">{post.name}</p>
-            {/* <p className="text-center">{post.date}</p> */}
           </div>
           <div className="post-info">
             <p className="lead">{post.text}</p>

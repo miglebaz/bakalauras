@@ -33,7 +33,8 @@ class Posts extends Component {
     const newPost = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
+      userType: user.userType
     };
 
     this.props.addPost(newPost);

@@ -23,9 +23,6 @@ class Navbar extends Component {
     const { userType } = user;
     const { profile } = this.props.profile;
 
-    console.log(profile)
-
-
     const authenticateNavBarLinks = (
       <ul className="navbar-nav ml-auto">
         <div class="dropdown">
