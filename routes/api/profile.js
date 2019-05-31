@@ -26,7 +26,7 @@ router.get(
     const warnings = {};
 
     Profile.findOne({ user: req.user.id })
-      .populate('user', ['name', 'avatar'])
+      .populate('user', ['name', 'avatar', 'userType'])
       .then(profile => {
         if (!profile) {
           warnings.noprofile = 'There is no profile for this user';

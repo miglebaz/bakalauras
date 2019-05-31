@@ -38,6 +38,7 @@ router.post('/register', (request, response) => { //api/users/register
       });
 
       const newUser = new User({
+        userType: request.body.userType,
         name: request.body.name,
         email: request.body.email,
         avatar,
@@ -64,6 +65,8 @@ router.post('/register', (request, response) => { //api/users/register
 router.post('/login', (request, response) => {
   const { warnings, isValid } = validateUsersLogInput(request.body);
 
+
+
   if (!isValid) {
     return response.status(400).json(warnings);
   }
@@ -83,7 +86,7 @@ router.post('/login', (request, response) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User Matched
-        const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT Payload
+        const payload = { id: user.id, name: user.name, avatar: user.avatar, userType: user.userType }; // Create JWT Payload
 
         // Sign Token
         jwt.sign(
