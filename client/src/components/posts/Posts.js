@@ -63,8 +63,8 @@ class Posts extends Component {
               <div className="posts-header">
                 <span className="posts-title">Skelbimai</span>
               </div>
-              {postContent}
               <PostForm />
+              {postContent}
             </div>
           </div>
         </div>

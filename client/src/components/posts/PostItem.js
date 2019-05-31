@@ -28,7 +28,7 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions, handle } = this.props;
+    const { post, auth, showActions } = this.props;
 
     return (
       <div className={`card card-body mb-3 ${post.userType === 'EMPLOYER' ?  'employer-card'  : 'student-card' }`}>
@@ -68,8 +68,9 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
+
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Komentuoti
+                  Komentarai
                 </Link>
             
                 {post.user === auth.user.id ? (
