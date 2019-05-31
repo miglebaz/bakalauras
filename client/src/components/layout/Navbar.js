@@ -25,8 +25,8 @@ class Navbar extends Component {
 
     const authenticateNavBarLinks = (
       <ul className="navbar-nav ml-auto">
-        <div class="dropdown">
-          <button class="nav-button btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div className="dropdown">
+          <button className="nav-button btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <li className="nav-item">
               Profilio nustatymai {' '}
               <img
