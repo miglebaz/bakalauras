@@ -34,7 +34,6 @@ class PostItem extends Component {
       <div className={`card card-body mb-3 ${post.userType === 'EMPLOYER' ?  'employer-card'  : 'student-card' }`}>
         <div className="row">
           <div className="col-md-2">
-              <Link to={`/profile/${handle[post.user]}`}>
                 <div className="post-picture-container">
                   <img
                     className="rounded-circle d-none d-md-block"
@@ -42,7 +41,6 @@ class PostItem extends Component {
                     alt=""
                   />
                 </div>
-              </Link>
               <p className="text-center">{post.name}</p>
               <div className="user-type" style={{fontWeight: "bold"}}>{post.userType === 'STUDENT' ? <p>Studentas</p> : <p>Darbdavys</p>}</div>
             <br />

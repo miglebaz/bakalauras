@@ -33,7 +33,7 @@ class PostForm extends Component {
       userType: user.userType,
       avatar: user.avatar,
       date: this.state.date,
-        };
+      };
 
     this.props.addPost(newPost);
     this.setState({ text: '' });
