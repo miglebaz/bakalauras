@@ -107,11 +107,11 @@
 }
 
 .employer-card {
-  background-color: #fad8c9;
+  background-color: rgba(0,123,255,.25);
 }
 
 .student-card {
-  background-color: #faf7e0;
+  background-color: rgba(24, 105, 193, 0.1);
 }
 
 .user-type p {
